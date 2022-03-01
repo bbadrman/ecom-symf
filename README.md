@@ -71,6 +71,15 @@ The easiest way is to install the apache Symfony pack by executing the following
 > Note: for more information check: [web server configuration](https://symfony.com/doc/current/setup/web_server_configuration.html).
 
 
-## Main Tasks
+## symfony make:user
 
-To do ...
+created: src/Entity/User.php
+ created: src/Repository/UserRepository.php
+ updated: src/Entity/User.php
+ updated: config/packages/security.yaml    
+
+nb: dans security il ajoute 
+ app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
