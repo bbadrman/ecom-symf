@@ -110,3 +110,35 @@ nb: dans security il ajoute
   3) aussi crasse a l'injection indupendance au fontion tu peut met index(EntityManagerInterface $Manager)
    $manajer->persist
    $manager->flush
+
+   ### creation login a l'aide du symfony make:auth
+
+   www-data@e9165f57d395:~/html$ symfony make:auth
+
+ What style of authentication do you want? [Empty authenticator]:
+  [0] Empty authenticator
+  [1] Login form authenticator
+ > 1
+
+ The class name of the authenticator to create (e.g. AppCustomAuthenticator):
+ > LoginFormAuthenticator
+
+ Choose a name for the controller class (e.g. SecurityController) [SecurityController]:
+ > 
+
+ Do you want to generate a '/logout' URL? (yes/no) [yes]:
+ > 
+
+ created: src/Security/LoginFormAuthenticator.php
+ updated: config/packages/security.yaml
+ created: src/Controller/SecurityController.php
+ created: templates/security/login.html.twig
+
+           
+  Success! 
+           
+
+ Next:
+ - Customize your new authenticator.
+ - Finish the redirect "TODO" in the App\Security\LoginFormAuthenticator::onAuthenticationSuccess() method.
+ - Review & adapt the login template: templates/security/login.html.twig.

@@ -20,21 +20,21 @@ class RegisterType extends AbstractType
         $builder
              ->add('firstname', TextType::class,[
                  'label' => 'Votre Prénom',
-                 'constraints' => new Length(20, 2),
+                 'constraints' => new Length(['min'=>2, 'max' => 20 ]),
                  'attr' => [
                      'placeholder' => 'Merci de saisir votre prénom'
                  ]
              ])
              -> add('lastname', TextType:: class, [
             'label' => 'Votre Nom',
-            'constraints' => new Length(20, 2),
+            'constraints' => new Length(['min'=>2, 'max' => 20 ]),
             'attr' => [
                 'placeholder' => 'Merci de saisir votre nom'
             ]
         ])
              ->add( 'email', EmailType::class, [
             'label' => 'Votre email',
-            'constraints' => new Length(60, 2),
+            'constraints' => new Length(['min'=>2, 'max' => 60 ]),
             'attr' => [
                 'placeholder' => 'Merci de saisir votre adresse email'
             ]
@@ -43,10 +43,13 @@ class RegisterType extends AbstractType
                  'type'=>  PasswordType::class,
                  'invalid_message' => 'le mot de passe et la confirmation doivent etre identique ',
                  'label' => 'Votre mot de passe',
-                 'constraints' => new Length(60, 2),
+                 'constraints' => new Length(['min'=>2, 'max' => 20 ]),
                  'required' => true,
-                 'first_options' => ['label' => "Mot de pass"],
-                 'second_options' => ['label' => "Confirmer Votre Mot de pass"],
+                 'first_options' => ['label' => "Mot de pass",
+                                     'attr' => ['placeholder' => 'Merci de saisir votre mot de passe'],],
+                 'second_options' => ['label' => "Confirmer Votre Mot de pass",
+                                     'attr' => ['placeholder' => 'Merci de confirmer votre mot de passe'],
+            ],
             
         ])
            
