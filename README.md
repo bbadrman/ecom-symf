@@ -83,3 +83,12 @@ nb: dans security il ajoute
             entity:
                 class: App\Entity\User
                 property: email
+
+
+### boostrap 
+  alors pour garder la theme boostrap il faut ajouter sur scripte twig.yaml :
+  twig:
+         form_themes: ['bootstrap_4_layout.html.twig']
+
+### conferme mot de password
+ il y a deux methode soit de declarer in form une class RepetType::class  ou bien  'mapped' => false, pour que soit reflese seulement sur broiser sans recherche de property pass-conferm in class user
