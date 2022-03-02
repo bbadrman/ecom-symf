@@ -92,3 +92,21 @@ nb: dans security il ajoute
 
 ### conferme mot de password
  il y a deux methode soit de declarer in form une class RepetType::class  ou bien  'mapped' => false, pour que soit reflese seulement sur broiser sans recherche de property pass-conferm in class user
+
+ ### valider la formule a l'aide injection indupendance 
+
+  1) pour valider la fourmule il faut met : 
+            $doctrine = $this->getDoctrine()->getManager();
+            $doctrine->persist($user);
+            $doctrine->flush();
+  au dessu du fonction 
+  2) ou bien created une private property au haut du fontion 
+       private $entityManager;
+       public function __construct(EntityManagerInterface $entityManager){
+         $this->entityManager = $entityManager;
+       }
+
+       dans ce cas on peut supprimer  $doctrine = $this->getDoctrine()->getManager();
+  3) aussi crasse a l'injection indupendance au fontion tu peut met index(EntityManagerInterface $Manager)
+   $manajer->persist
+   $manager->flush
