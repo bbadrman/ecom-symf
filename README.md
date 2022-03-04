@@ -145,3 +145,34 @@ nb: dans security il ajoute
 
  ### symfony debug:route 
  qui permet d'afficher les route possible avec leur path
+
+ ### EasyAdminBundle
+
+ 1) il faut l'installer a l'aide du cmd "composer require easycorp/easyadmin-bundle"
+ 2) 
+www-data@e9165f57d395:~/html$ symfony make:admin:dashboard
+
+ Which class name do you prefer for your Dashboard controller? [DashboardController]:
+ > 
+
+ In which directory of your project do you want to generate "DashboardController"? [src/Controller/Admin/]:
+ > 
+
+
+                                                                                                                        
+ [OK] Your dashboard class has been successfully generated.            
+
+ 3) www-data@e9165f57d395:~/html$ symfony make:admin:crud
+
+ Which Doctrine entity are you going to manage with this CRUD controller?:
+  [0] App\Entity\User
+ > 0
+
+ Which directory do you want to generate the CRUD controller in? [src/Controller/Admin/]:
+ > 
+
+ Namespace of the generated CRUD controller [App\Controller\Admin]:
+ > 
+
+                                                                                                                        
+ [OK] Your CRUD controller class has been successfully generated.
