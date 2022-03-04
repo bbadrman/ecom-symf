@@ -47,10 +47,15 @@
                 </li>
                 
             </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Votre recherche" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-            </form>
+          
+            {% if app.user %}
+                   <a href="{{ path('account') }}">Mon compte</a>  |   <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                
+                    <a href="{{ path('app_login') }}">Connexion</a>  |   <a href="{{ path('register') }}">Inscription</a>
+            {% endif %}
+
+            
         </div>
     </nav>
 </header>
