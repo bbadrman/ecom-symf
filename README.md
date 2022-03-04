@@ -142,3 +142,6 @@ nb: dans security il ajoute
  - Customize your new authenticator.
  - Finish the redirect "TODO" in the App\Security\LoginFormAuthenticator::onAuthenticationSuccess() method.
  - Review & adapt the login template: templates/security/login.html.twig.
+
+ ### symfony debug:route 
+ qui permet d'afficher les route possible avec leur path
