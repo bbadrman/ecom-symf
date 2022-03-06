@@ -34,6 +34,10 @@ class Category
         $this->products = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->getName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,6 +62,7 @@ class Category
     {
         return $this->products;
     }
+
 
     public function addProduct(Product $product): self
     {
