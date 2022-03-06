@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ product.name }}
+    La boutique!
+    
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col md-5">
+            <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+        </div>
+            <div class="col md-7 my-auto">
+                <h3> {{ product.name }} </h3>
+                <p class="product-subtitle">{{ product.subtitle }}</p>
+                     <span class="product-page-price">{{(product.price / 100) | number_format(2,',','.')}} dh</span>
+                    <p>{{ product.description }}</p>
+                        <a href="" class="btn btn-primary">Ajouter au panier</a>
+            </div>
+
+        </div>
+
+       
+    {% endblock %}
+    
