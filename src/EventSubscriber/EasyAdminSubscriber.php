@@ -20,8 +20,47 @@ class EasyAdminSubscriber implements EventSubscriberInterface
   {
     return [
       BeforeEntityPersistedEvent::class => ['setIllustration'],
+      BeforeEntityPersistedEvent::class => ['updateIllustration'],
     ];
   }
+
+  public function uploadIllustrations($event){
+
+    $entity = $event->getEntityInstance();
+
+    $tmp_name = $_FILES['Product']['tmp_name']['illustration']['file'];
+
+    $filename = uniqid();
+
+    $extention = pathinfo($_FILES['Product']['name']['illustration']['file'], PATHINFO_EXTENSION);
+
+    $projet_dir = $this->appkernel->getProjectDir();
+
+    move_uploaded_file($tmp_name, $projet_dir . '/public/uploads/'.$filename.'.'.$extention);
+
+    $entity->setIllustration($tmp_name, $filename);
+  }
+
+  public function updateIllustration(BeforeEntityPersistedEvent $event)
+  {
+    if($_FILES['Product']['tmp_name']['illustration'] !=''){
+      $entity = $event->getEntityInstance();
+
+
+      $tmp_name = $_FILES['Product']['tmp_name']['illustration']['file'];
+
+      $filename = uniqid();
+
+      $extention = pathinfo($_FILES['Product']['name']['illustration']['file'], PATHINFO_EXTENSION);
+
+      $projet_dir = $this->appkernel->getProjectDir();
+
+      move_uploaded_file($tmp_name, $projet_dir.'/public/uploads/'.$filename.'.'.$extention);
+      
+      $entity->setIllustration($tmp_name, $filename);
+    }
+  }
+
 
   public function setIllustration(BeforeEntityPersistedEvent $event)
   {
@@ -29,7 +68,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             
     $entity = $event->getEntityInstance();
     //dd($entity); //"test.jpg"
-    $tap_name = $entity->getIllustration();
+    $tmp_name = $_FILES['Product']['tmp_name']['illustration']['file'];
     // dd($tap_name); //"test.jpg"
     $filename = uniqid();
     //dd($filename);//"6223c3982215f"
@@ -44,11 +83,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
  
 
-    $projet_dir = $this->appkernel->getProjectDir();
+    $project_dir = $this->appkernel->getProjectDir();
     //dd($projet_dir);"/var/www/html"
 
-     move_uploaded_file($tap_name, $projet_dir.'/public/uploads/'.$filename);
-    // dd($test);
-    $entity->setIllustration($tap_name, $filename);
+    $test = move_uploaded_file($tmp_name, $project_dir.'/public/uploads/'.$filename);
+     dd($test);
+    $entity->setIllustration($filename);
   }
 }
