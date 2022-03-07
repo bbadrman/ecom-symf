@@ -17,7 +17,7 @@
                 <p class="product-subtitle">{{ product.subtitle }}</p>
                      <span class="product-page-price">{{(product.price / 100) | number_format(2,',','.')}} dh</span>
                     <p>{{ product.description }}</p>
-                        <a href="" class="btn btn-primary">Ajouter au panier</a>
+                        <a href="{{ path('add_to_cart', {'id' : product.id}) }}" class="btn btn-primary">Ajouter au panier</a>
             </div>
 
         </div>
