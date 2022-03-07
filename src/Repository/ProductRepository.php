@@ -2,11 +2,12 @@
 
 namespace App\Repository;
 
+use App\Classe\Search;
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -45,6 +46,30 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Requet qui me permet de recuperer les produits en fonction de la recherche de l'utilisateur
+     * @return Product/
+     */
+
+    public function findWithSearch(Search $search){
+        $query = $this
+          ->createQueryBuilder('p')
+          ->select('c', 'p')
+          ->join('p.category', 'c');
+
+          if (!empty($search->categories)) {
+               $query = $query
+               ->andWhere('c.id IN (:categories)')
+               ->setParameter('categories', $search->categories);
+          }
+
+          if (!empty($search->string)) {
+               $query = $query
+               ->andWhere('p.name LIKE :string')
+               ->setParameter('string', "%{$search->string}%");
+          }
+          return $query->getQuery()->getResult();
+    }
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */
