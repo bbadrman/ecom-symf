@@ -7,7 +7,8 @@
     Retrouvez l'ensemble des produits que vous avez ajouté à votre panier
     <hr>
 
-
+{% if cart|length %}
+    
 <table class="table mt-3">
     <caption>
         List of users
@@ -47,13 +48,25 @@
             </th>
 
             <td>
-            x {{product.quantity}}
-            </td>
+                <a href="{{ path('decrease_cart',{'id':product.product.id}) }}">
+                <img src="{{asset('assets/img/minus.png')}}" height="15px" alt="Retirer un produit">
+                </a>
+                x {{product.quantity}}
+            <a href="{{ path('add_to_cart',{'id':product.product.id}) }}">
+            <img src="{{asset('assets/img/plus.png')}}" height="15px" alt="Ajouter un produit">
+           </a>
+
+           </td>
             <td>
                {{(product.product.price / 100) | number_format(2,',','.')}} dh
             </td>
             <td>
                 {{(product.product.price * product.quantity / 100) | number_format(2,',','.')}} dh
+            </td>
+            <td>
+                <a href="{{ path('delete_cart', {id:product.product.id}) }}">
+                <img src="{{asset('assets/img/trash.png')}}" height="18px" alt="supremer mon produit">
+               </a>     
             </td>
         </tr>
 {% set total = total + (product.product.price * product.quantity) %}
@@ -67,8 +80,16 @@
         <b>Total de mon panier :</b> {{( total / 100 ) | number_format(2,',','.')}} dh
          
 
-        <a href="" class="btn btn-success btn-block">Valider Mon panier</a>
+        <a href="" class="btn btn-success btn-block mt-3">Valider Mon panier</a>
 </div>
+
+{% else %}
+<hr>
+<p><b>  
+    Votre Panier est vide
+</b></p>
+
+{% endif %}
 
 
 {% endblock %}
