@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mes addresses -Boutique!
+            
+        
+    
+{% endblock %}
+
+{% block content %}
+    <a href="{{ path('address_add') }}" class="btn btn-info btn-sm float-right">
+        Ajouter une adresse
+                        
+                    
+            
+    </a>
+
+    <h1>
+        Mes addresses
+                            
+                    
+            
+    </h1>
+
+    c'est dans votre espace que vous aller pouvoire gerer toutes vos addresses
+            
+        
+    <br>
+        <a href="{{ path('account') }}">
+            Retour
+                                
+                    
+        </a>
+        <hr>
+
+            {% if app.user.adresses|length == 0 %}
+                <p class="text-center">
+                    Vous n'avez pas encoure ajouté d'adresse dans votre compte client. Pour en ajouter une, veuillez 
+                                                            
+                                        
+                    <a href='{{ path(' address_add') }}'>
+                        cliquer ici
+                                                                    
+                                            
+                    </a>
+                </p>
+
+            {% else %}
+                <div class="row">
+                    {% for adress in app.user.adresses %}
+
+                        <div class="col-col-md-4">
+
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ adress.name }}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ adress.address }},<br>
+                                             {{ adress.postal }} - {{ adress.city }} - {{ adress.country }}
+                                    </p>
+                                    <a href="{{ path('address_edit', {'id':adress.id}) }}" class="btn btn-primary">
+                                        Modifier 
+                                    </a>
+                                     <a href="{{ path('address_delete', {'id':adress.id}) }}" class="btn btn-info">
+                                        Supremer
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        {% endblock %}
+        
