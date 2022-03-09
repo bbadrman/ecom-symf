@@ -48,3 +48,7 @@ body{
     height: 20px;
     padding-left: 20px;
 }
+.block-login{
+    max-width: 600px;
+    margin: 0 auto;
+}

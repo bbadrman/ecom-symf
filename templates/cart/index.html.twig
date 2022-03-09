@@ -80,7 +80,7 @@
         <b>Total de mon panier :</b> {{( total / 100 ) | number_format(2,',','.')}} dh
          
 
-        <a href="" class="btn btn-success btn-block mt-3">Valider Mon panier</a>
+        <a href="{{ path('order') }}" class="btn btn-success btn-block mt-3">Valider Mon panier</a>
 </div>
 
 {% else %}

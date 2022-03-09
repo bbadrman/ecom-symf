@@ -40,6 +40,7 @@ class AddressType extends AbstractType
         ])
             ->add( 'company', TextType::class, [
             'label' => 'Votre societe',
+            'required' =>false,
             'constraints' => new Length(['min' => 2, 'max' => 20]),
             'attr' => [
                 'placeholder' => '(facultatif) Entez votre societe'
@@ -47,7 +48,7 @@ class AddressType extends AbstractType
         ])
             ->add('address', TextType::class, [
             'label' => 'votre address',
-            'constraints' => new Length(['min' => 2, 'max' => 20]),
+            'constraints' => new Length(['min' => 2, 'max' => 60]),
             'attr' => [
                 'placeholder' => '27 ,rue tijanier hay wahda kom'
             ]
