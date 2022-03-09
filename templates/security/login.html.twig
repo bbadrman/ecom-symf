@@ -1,43 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter!{% endblock %}
-
-{% block content %} 
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Merci de connecter</h1>
-    <label for="inputEmail">Votre Email</label>
-<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Votre Email" autocomplete="email" required autofocus>
-    
-    <label for="inputPassword">Votre Mot de Passe </label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Votre Mot de Passe" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-<br>
-    <button class="btn btn-lg btn-primary btn-sm" type="submit">
-        Se connecter
-    </button>
-</form>
+{% block title %}
+    Se connecter!
 {% endblock %}
+
+{% block content %}
+    <div class="block-login">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as 
+                    {{ app.user.username }}
+                    , 
+                    <a href="{{ path('app_logout') }}">
+                        Logout
+                    </a>
+                </div>
+            {% endif %}
+
+            <h1 class="h3 mb-3 font-weight-normal">
+                Merci de connecter
+            </h1>
+            <label for="inputEmail">
+                Votre Email
+            </label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Votre Email" autocomplete="email" required autofocus>
+
+                <label for="inputPassword">
+                    Votre Mot de Passe 
+                </label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Votre Mot de Passe" autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                     
+                        <br>
+                            <button class="btn btn-lg btn-info btn-block mt-3" type="submit">
+                                Se connecter
+                                    
+                            </button>
+                            <hr>
+                                <p class="text-center">Ou souhaitez-vous <a href="{{ path('register')}}">Créer un Compte</a></p>
+                                
+                        </form>
+                    </div>
+
+                {% endblock %}
+                
