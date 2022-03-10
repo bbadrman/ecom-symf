@@ -22,10 +22,8 @@
                     {% set formHtml %}
                      {{ form( form ) }}
                     {% endset %}
-                {{ formHtml|replace({'[br]' : '</br>'})|raw }}
-                        <b>
-                            choisir mon transporteur
-                        </b>
+                     {{ formHtml|replace({'[br]' : '</br>'})|raw }}
+                       
                     </div>
                     <div class="col-md-6">
                         <b>
