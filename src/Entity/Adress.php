@@ -69,7 +69,7 @@ class Adress
     private $phone;
 
     public function __toString() {
-   return $this->getName().'[br]'. $this->getAddress(). '[br]'.$this->getCity().'-'.$this->getCountry();
+   return $this->getName().' '.$this->getAddress().', '.$this->getCity().'-'.$this->getCountry();
     }
 
     public function getId(): ?int
