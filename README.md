@@ -180,3 +180,6 @@ www-data@e9165f57d395:~/html$ symfony make:admin:dashboard
  ### Création de notre compte Stripe
    email:  bbadrman@gmail.com
    password: badrman@1983
+
+###  Installation de Stripe dans notre projet
+  a l'aide du commande   "composer require stripe/stripe-php" dans container docker bien sur
