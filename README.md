@@ -176,3 +176,7 @@ www-data@e9165f57d395:~/html$ symfony make:admin:dashboard
 
                                                                                                                         
  [OK] Your CRUD controller class has been successfully generated.
+
+ ### Création de notre compte Stripe
+   email:  bbadrman@gmail.com
+   password: badrman@1983
