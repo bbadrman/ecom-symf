@@ -65,7 +65,8 @@
                         <br/>
                         {{ carrier.description }}
                         <br/>
-                        {{ carrier.price | number_format(2,',','.') }}
+                        {{ (carrier.price / 100)
+                         | number_format(2,',','.') }}
                         Dhs
                                                                                                                                                                 
                                                                                                                                                                     
