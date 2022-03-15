@@ -65,7 +65,7 @@
                         <br/>
                         {{ carrier.description }}
                         <br/>
-                        {{ carrier.price| number_format(2,',','.') }}
+                        {{ carrier.price | number_format(2,',','.') }}
                         Dhs
                                                                                                                                                                 
                                                                                                                                                                     
@@ -119,13 +119,13 @@
                                 <strong> Sous-Total :  </strong>
                                 {{ ( total / 100 ) | number_format(2,',','.') }}  dh <br/>
                                 <strong>  Livraison : </strong>
-                                {{ ( carrier.price ) | number_format(2,',','.') }} dh
+                                {{ ( carrier.price / 100 ) | number_format(2,',','.') }} dh
                                                             
                                 <hr>
                                     <strong>  Total :     </strong>
-                                    {{ (( total / 100 ) + carrier.price ) | number_format(2,',','.') }}   dh
+                                    {{ (( total / 100 ) + carrier.price / 100  ) | number_format(2,',','.') }}   dh
                                         
-                                    <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ (( total / 100 ) + carrier.price ) | number_format(2,',','.') }}  dh                                                                                                        
+                                    <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer |  {{ (( total / 100 ) + carrier.price / 100  ) | number_format(2,',','.') }}   dh
                                     </a>
 
                                 </div>

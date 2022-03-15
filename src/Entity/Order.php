@@ -61,6 +61,12 @@ class Order
      */
     private $reference;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stripeSessionId;
+
+    
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -192,4 +198,18 @@ class Order
 
         return $this;
     }
+
+    public function getStripeSessionId(): ?int
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(int $stripeSessionId): self
+    {
+        $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
+
+    
 }
