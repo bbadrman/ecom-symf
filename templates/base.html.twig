@@ -11,7 +11,7 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/monboutique.css') }}">
-    
+    {% block javascript %}{% endblock %}
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -150,4 +150,5 @@
 
 
 </body>
+{% block script %}{% endblock %}
 </html>

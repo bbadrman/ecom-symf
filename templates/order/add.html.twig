@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block javascript %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
 {% block title %}
     Valider ma commande!     
-        
+                    
+                    
+                
+            
         
     
 {% endblock %}
@@ -10,13 +17,19 @@
 {% block content %}
     <h2>
         Mon recupilatif  
+                                                    
+                                            
+                                    
                             
                     
             
     </h2>
     <p>
         Vérifez vos informations avant de payer votre commande
-           
+                                   
+                                    
+                            
+                    
             
     </p>
     <hr>
@@ -24,6 +37,9 @@
             <div class="col-md-6">
                 <strong>
                     Mon adresse de livraison
+                                                                                                                                        
+                                                                                                                    
+                                                                                                
                                                                             
                                                         
                                     
@@ -38,6 +54,9 @@
 
                     <strong>
                         Mon transport                            
+                                                                                            
+                                                                    
+                                            
                     </strong>
                     <br/>
                     <div class="form-check">
@@ -48,7 +67,10 @@
                         <br/>
                         {{ carrier.price| number_format(2,',','.') }}
                         Dhs
-                                                                                        
+                                                                                                                                                                
+                                                                                                                                                                    
+                                                                                                                                            
+                                                                                                                    
                                                                                             
                                                                     
                                             
@@ -58,6 +80,9 @@
                     <div class="text-center">
                         <b>
                             Ma commande    
+                                                                                                                                                                                                
+                                                                                                                                                                    
+                                                                                                                                        
                                                                                                             
                                                                                 
                                                     
@@ -78,15 +103,11 @@
                                             <small>
                                                 {{ product.product.subtitle }}
                                                 <br/>
-                                                x                                                
-                                                                                                
-                                                {{ product.quantity }}
+                                                x  {{ product.quantity }}
                                             </small>
                                         </div>
                                         <div class="col-2 my-auto">
-                                            {{ (product.product.price * product.quantity / 100) | number_format(2,',','') }}
-                                            Dhs                                              
-                                                                                    
+                                            {{ (product.product.price * product.quantity / 100) | number_format(2,',','') }} Dhs                                                                                          
                                         </div>
                                     </div>
                                     {% set total = total + (product.product.price * product.quantity) %}
@@ -95,50 +116,52 @@
                             </div>
 
                             <hr>
-                                <strong>
-                                    Sous-Total :
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </strong>
-                                {{ ( total / 100 ) | number_format(2,',','.') }}
-                                dh
-                                                           
-                                                                
-                                <br/>
-                                <strong>
-                                    Livraison :
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </strong>
-                                {{ ( carrier.price ) | number_format(2,',','.') }}
-                                dh
-                                                                
-                                                                
+                                <strong> Sous-Total :  </strong>
+                                {{ ( total / 100 ) | number_format(2,',','.') }}  dh <br/>
+                                <strong>  Livraison : </strong>
+                                {{ ( carrier.price ) | number_format(2,',','.') }} dh
+                                                            
                                 <hr>
-                                    <strong>
-                                        Total :                                   
-                                    </strong>
-                                    {{ (( total / 100 ) + carrier.price ) | number_format(2,',','.') }}
-                                    dh
-                                                                                                                                                                                        
-                                                                                                                                                                                
-                                                                                                                                                
-                                                                                                            
-                                                                        
-                                    <a href="" class="btn btn-success btn-block mt-3">
-                                        Payer | 
-                                                                                                                                                                
-                                                                                                                        
-                                                                                
-                                        {{ (( total / 100 ) + carrier.price ) | number_format(2,',','.') }}
-                                        dh
-                                                                                                                                                            
-                                                                                                                    
-                                                                            
+                                    <strong>  Total :     </strong>
+                                    {{ (( total / 100 ) + carrier.price ) | number_format(2,',','.') }}   dh
+                                        
+                                    <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ (( total / 100 ) + carrier.price ) | number_format(2,',','.') }}  dh                                                                                                        
                                     </a>
+
                                 </div>
                             </div>
                         {% endblock %}
-                        
+
+{% block script %}
+    <script type="text/javascript">
+        var stripe = Stripe("pk_test_51KcDcVETyoGWNIM7kLsc309bHsq6nbi973U1hv0GwZYyh3IXfIFyeRU7TeHrd2JXhdtEVVwbwbrrI8HAZr9GGuTg00hVWLFdt1");
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+                 fetch("/commande/create-session/{{ reference }}", {
+                    method: "POST",
+                })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (session) {
+                    if (session.error == 'order') {
+                        window.location.replace('{{ path('order') }}');
+                    } else {
+                        return stripe.redirectToCheckout({ sessionId: session.id });
+                    }
+                })
+                .then(function (result) {
+                    // If redirectToCheckout fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using error.message.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+{% endblock %}
+
