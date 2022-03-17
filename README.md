@@ -183,3 +183,8 @@ www-data@e9165f57d395:~/html$ symfony make:admin:dashboard
 
 ###  Installation de Stripe dans notre projet
   a l'aide du commande   "composer require stripe/stripe-php" dans container docker bien sur
+
+### fr.mailjet.com   au lieu du swifmailer-bundel
+       bbadrman@gmail.com
+       badrman@1983
+       id model :3770328
