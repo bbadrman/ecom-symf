@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -14,9 +15,11 @@ class HomeController extends AbstractController
      */
     public function index(SessionInterface $session): Response
     {
-        $session->remove('cart');
-        $cart = $session->get('cart');
-        
+        $mail = new Mail();
+        $mail->send('bbadrman@gmail.com',  'badr bechtioui', 'Mon mail',  'bonjout badr');
+        // $session->remove('cart');
+        // $cart = $session->get('cart');
+         
         return $this->render('home/index.html.twig');
     }
 }
