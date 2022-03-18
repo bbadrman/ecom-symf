@@ -2,7 +2,13 @@
 
 {% block content %}
 
-<h1>inscription</h1>
+{% if notification %}
+    <div class="alert alert-info">
+        {{ notification }}
+    </div>
+    <hr>
+    {% endif %}
 
-    {{ form(form)}}
+    {{ form(form) }}
+        
 {% endblock %}
