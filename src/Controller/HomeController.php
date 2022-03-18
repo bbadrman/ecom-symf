@@ -15,10 +15,10 @@ class HomeController extends AbstractController
      */
     public function index(SessionInterface $session): Response
     {
-        $mail = new Mail();
-        $mail->send('bbadrman@gmail.com',  'badr bechtioui', 'Mon mail',  'bonjout badr');
-        // $session->remove('cart');
-        // $cart = $session->get('cart');
+        // $mail = new Mail();
+        // $mail->send('badr.bechtioui@gmail.com',  'badr bechtioui', 'Mon mail',  'bonjout badr');
+        $session->remove('cart');
+        //$cart = $session->get('cart');
          
         return $this->render('home/index.html.twig');
     }
