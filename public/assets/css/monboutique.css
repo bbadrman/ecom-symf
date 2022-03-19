@@ -52,6 +52,14 @@ body{
     max-width: 600px;
     margin: 0 auto;
 }
+
+.carousel-item active{
+    padding: 2em;
+    background-size: cover;
+    background-position: center center ;
+ 
+}
+
 .form-check{
     background-color: #f4f8ff;
     padding: 20px 65px;
