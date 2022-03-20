@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OrderController extends AbstractController
 {
     private $entityManager;
+
     public function __construct(EntityManagerInterface $entityManager){
         $this->entityManager = $entityManager;
     }
@@ -76,9 +77,11 @@ class OrderController extends AbstractController
              $order->setCarrierName($carriers->getName());
              $order->setCarrierPrice($carriers->getPrice());
              $order->setDelivery($delivery_content);
-             $order->setIsPaid(0);
+             $order->setState(0);
+
             $this->entityManager->persist($order);
-            //Enregistrer mes produits orderdet 
+
+           // Enregistrer mes produits OrderDetails()
              
             foreach($cart->getFull() as $product){
                  $orderDetails = new OrderDetails();
