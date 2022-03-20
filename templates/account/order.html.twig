@@ -50,7 +50,7 @@
                                 </span>
                             </td>
                             <td>
-                                {# {% if order.state == 1 %}
+                                {% if order.state == 1 %}
                                     Paiement accepté
                                                             
                                 {% elseif order.state == 2 %}
@@ -59,7 +59,7 @@
                                 {% elseif order.state == 3 %}
                                     Livraison en cours
                                                             
-                                {% endif %} #}
+                                {% endif %}
                             </td>
                             <td>
                                 {{ order.createdAt|date('d/m/Y') }}

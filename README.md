@@ -188,3 +188,21 @@ www-data@e9165f57d395:~/html$ symfony make:admin:dashboard
        bbadrman@gmail.com
        badrman@1983
        id model :3770328
+
+### An exception has been thrown during the rendering of a template ("Parameter "slug" for route "ads_show" must match "[^/]++" ("" given) to generate a corresponding URL.").
+
+soulition : tu doit supremer les champs qui sont null sur base donnees
+
+
+
+App\Entity\Ad object not found by the @ParamConverter annotation.
+
+soulition:il ete un probleme en route ,j ai pas pose edit au chemin exacte  apres slug
+
+An exception occurred while executing a query: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'ad_id' cannot be null
+
+
+soulition :ObjectManager samarche pas sur symfony 5 il faut met EntityManagerInterfac
+
+
+pour la confirmation password :en cree une champs sur type apres en met une proprytie sur entity correspont sapel parexmpl passconfirm
