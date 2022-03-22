@@ -2,11 +2,15 @@
 
 {% block title %}Mon Compte -Boutique!{% endblock %}
 
+
 {% block content %}
-<h1>Mon Compte</h1>
-    Bienvenus {{app.user.firstname}} dans votre compte,<br>
-         c'est dans votre espace que vous aller pouvoire gerer toutes vos informations personnells
-<hr>
+    <h1>Mon compte</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <small><a href="/admin">Vous êtes un administrateur, accéder au backoffice ?</a></small><br/>
+    {% endif %}
+    Bienvenue {{ app.user.firstname }} dans votre compte.<br/>
+    C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
+    <hr>
     <a href="{{ path('account_password')}}">Modifier mon mot de passe</a><br>
     <a href="{{ path('account_address')}}">Gerer mes adresse</a><br>
     <a href="{{ path('account_order')}}">Mes commandes</a><br>
