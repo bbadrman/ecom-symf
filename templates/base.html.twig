@@ -47,7 +47,7 @@
                     <a class="nav-link" href="#">Qui Somme nous ?</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{{path("contact")}}">Contact</a>
                 </li>
                 
             </ul>
@@ -135,7 +135,19 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+<script type="text/javascript">
 
+    function placeFooter() {
+        if( $(document.body).height() < $(window).height() ) {
+            $("footer").css({position: "fixed", bottom:"0px"});
+        } else {
+            $("footer").css({position: ""});
+        }
+    }
+
+    placeFooter();
+
+</script>   
 
 </body>
 {% block script %}{% endblock %}

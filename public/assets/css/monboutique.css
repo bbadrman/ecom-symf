@@ -75,3 +75,22 @@ body{
     margin-top: 22px;
 
 }
+
+.account-item {
+    background-color: #f1f2f6;
+    padding: 70px;
+}
+
+.account-item a {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #4b6584;
+    font-weight: bold;
+}
+.account-item a:hover {
+    color: #778ca3;
+    text-decoration: none;
+}
+.a {
+     font-size: 23px;
+}
